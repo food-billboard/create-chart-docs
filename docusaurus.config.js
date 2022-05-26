@@ -6,25 +6,30 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: '可视化大屏文档',
+  tagline: '数据可视化的操作和开发文档',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+  deploymentBranch: 'master',
+
+  customFields: {
+
+  },
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'food-billboard', // Usually your GitHub org/user name.
+  projectName: '数据可视化大屏文档', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'zh-Hans',
+    locales: ['zh-Hans'],
   },
 
   presets: [
@@ -36,15 +41,15 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -57,21 +62,34 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        hideOnScroll: true,
+        title: '数据可视化大屏文档',
         logo: {
-          alt: 'My Site Logo',
+          alt: '数据可视化大屏文档',
           src: 'img/logo.svg',
         },
         items: [
           {
             type: 'doc',
+            // 有版本
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: '操作文档',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: '开发文档', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            label: '版本', 
+            position: 'right',
+            items: [
+              {
+                label: '1.5',
+                to: '/other',
+                docId: ''
+              }
+            ],
+          },
+          {
+            href: 'https://github.com/food-billboard/create-chart',
             label: 'GitHub',
             position: 'right',
           },
@@ -81,37 +99,33 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: '文档',
             items: [
               {
-                label: 'Tutorial',
+                label: '操作文档',
                 to: '/docs/intro',
               },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
+                label: '开发文档',
                 to: '/blog',
+              },
+            ],
+          },
+          {
+            title: '联系我',
+            items: [
+              {
+                label: 'Github',
+                href: 'https://github.com/food-billboard',
+              }
+            ],
+          },
+          {
+            title: '更多',
+            items: [
+              {
+                label: '博客',
+                href: 'https://food-billboard.github.io/',
               },
               {
                 label: 'GitHub',
@@ -120,11 +134,12 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} 可视化大屏文档, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        defaultLanguage: 'javascript',
       },
     }),
 };
