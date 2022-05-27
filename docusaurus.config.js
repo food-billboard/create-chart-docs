@@ -72,7 +72,7 @@ const config = {
           {
             type: 'doc',
             // 有版本
-            docId: 'intro',
+            docId: '介绍',
             position: 'left',
             label: '操作文档',
           },
@@ -83,14 +83,14 @@ const config = {
             items: [
               {
                 label: '1.5',
-                to: '/other',
-                docId: ''
+                to: '/version/1.5',
+                docId: 'version_1.5'
               }
             ],
           },
           {
             href: 'https://github.com/food-billboard/create-chart',
-            label: 'GitHub',
+            label: 'Github',
             position: 'right',
           },
         ],
@@ -103,7 +103,7 @@ const config = {
             items: [
               {
                 label: '操作文档',
-                to: '/docs/intro',
+                to: '/docs/介绍',
               },
               {
                 label: '开发文档',

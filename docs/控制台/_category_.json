@@ -1,0 +1,8 @@
+{
+  "label": "控制台",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "包含大屏及模板管理的控制台"
+  }
+}
