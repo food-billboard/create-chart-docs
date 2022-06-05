@@ -1,7 +1,17 @@
 ---
 sidebar_position: 1
+title: example-1
 ---
 
 # 根据不同`url`查询参数显示不同的图表。  
 
-通过更改大屏地址的`url`查询参数，显示不同类型的图表。  
+前面介绍到*大屏*的`url`地址上的参数也会被收集到大屏的**全局参数**中。  
+将组件**关联**到该参数就可以设置对应的条件。  
+
+比如：
+  `https://www.example.com?name=张三`  
+  `https://www.example.com?name=李四`  
+当`name=张三`时，显示饼图  
+当`name=李四`时，显示柱形图  
+
+<video controls src="/img/docs/实例/example-1.mp4" />
