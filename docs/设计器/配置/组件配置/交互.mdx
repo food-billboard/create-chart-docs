@@ -2,12 +2,14 @@
 sidebar_position: 3
 ---
 
+import ImagePreview from "@site/src/components/ImagePreview";
+
 # 交互  
 
   组件内置交互事件，当*组件*的**状态**或**数据**发生变化，或是触发了指定**事件**时，触发交互。  
   其他组件可以使用关联其他组件的交互。  
 
-  ![交互介绍](/img/docs/设计器/画布/配置/组件配置/交互/interactive-intro.png)   
+  <ImagePreview alt="交互介绍" src="/img/docs/设计器/画布/配置/组件配置/交互/interactive-intro.png" /> 
 
   比如：
     点击**柱形图**柱条触发其事件。  
@@ -26,4 +28,4 @@ sidebar_position: 3
   由于很多组件的交互事件关联字段名称都相同，多个相同字段会存在覆盖的问题。  
   类似于*数据的字段映射*，交互的字段同样可以进行映射，设置为不同的名称。  
 
-  ![交互映射](/img/docs/设计器/画布/配置/组件配置/交互/interactive-map.png)   
+  <ImagePreview alt="交互映射" src="/img/docs/设计器/画布/配置/组件配置/交互/interactive-map.png" /> 

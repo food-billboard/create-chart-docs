@@ -2,11 +2,13 @@
 sidebar_position: 2
 --- 
 
+import ImagePreview from "@site/src/components/ImagePreview";
+
 # 数据  
 
 为组件提供**数据**的模块，组件根据不同的数据，展示不同的形态。  
 
-![基础配置](/img/docs/设计器/画布/配置/组件配置/数据/data-intro.png)   
+<ImagePreview alt="数据配置" src="/img/docs/设计器/画布/配置/组件配置/数据/data-intro.png" /> 
 
 ## 字段映射
 
@@ -46,7 +48,7 @@ sidebar_position: 2
 
   当前大屏内**固定**的数据。  
 
-  ![静态数据](/img/docs/设计器/画布/配置/组件配置/数据/static-config.png)   
+  <ImagePreview alt="静态数据" src="/img/docs/设计器/画布/配置/组件配置/数据/static-config.png" /> 
 
   通过[代码编辑器](#code-editor)完成`json`数据的设置。  
 
@@ -54,8 +56,8 @@ sidebar_position: 2
 
   通过设置`url`地址以及一些*参数*，发起的**网络请求**，所响应的**数据**。  
 
-  ![api get数据](/img/docs/设计器/画布/配置/组件配置/数据/api-get.png)   
-  ![api post数据](/img/docs/设计器/画布/配置/组件配置/数据/api-post.png)   
+  <ImagePreview alt="api get数据" src="/img/docs/设计器/画布/配置/组件配置/数据/api-get.png" /> 
+  <ImagePreview alt="api post数据" src="/img/docs/设计器/画布/配置/组件配置/数据/api-post.png" /> 
 
   `API`请求包含了：[url地址](#url)、[请求方法](#method)、[可选的请求headers](#headers)和[post请求可选的请求body](#body)
 
@@ -101,7 +103,7 @@ sidebar_position: 2
 
   设置时间间隔，**定时**发起网络请求。  
 
-  ![定时请求](/img/docs/设计器/画布/配置/组件配置/数据/request-interval.png)   
+  <ImagePreview alt="定时请求" src="/img/docs/设计器/画布/配置/组件配置/数据/request-interval.png" /> 
 
 #### 服务端请求  
 
@@ -131,7 +133,7 @@ sidebar_position: 2
   此时就需要通过过滤器，对数据**预先**进行处理。  
 
   过滤器本质是一个个的`javascript`函数。  
- ![过滤器](/img/docs/设计器/画布/配置/组件配置/数据/filter.png)   
+  <ImagePreview alt="过滤器" src="/img/docs/设计器/画布/配置/组件配置/数据/filter.png" /> 
 
   函数的**返回值**为经过处理的数据。  
 
@@ -172,7 +174,7 @@ sidebar_position: 2
 ## 代码编辑器 {#code-editor}
 
   编辑器完成大屏当中一些**编写数据**以及**逻辑**的相关工作。  
-  ![过滤器](/img/docs/设计器/画布/配置/组件配置/数据/code-editor.png)   
+  <ImagePreview alt="过滤器" src="/img/docs/设计器/画布/配置/组件配置/数据/code-editor.png" /> 
 
   比如 过滤器的逻辑函数、组件的条件事件逻辑，API请求的body、headers等。  
 
