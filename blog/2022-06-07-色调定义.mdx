@@ -1,0 +1,42 @@
+---
+slug: 自定义大屏的整体色调
+title: 色调自定义
+authors: [Daniel]
+position: 3
+---  
+
+# 自定义大屏色调  
+
+设计器的整体色调为可自定义。  
+
+## 配置文件  
+自定义文件存放位置为`/src/theme/custom-theme.json`  
+
+文件内容可根据[echarts](https://echarts.apache.org/zh/theme-builder.html)，来进行配置。  
+将配置文件下载后放在上述文件夹下。  
+
+## 定义色调  
+配置注入  
+`/src/utils/Assit/Theme/index.ts`  
+代码步骤：
+```ts
+  import CustomeTheme from '../../../theme/custom-theme.json';
+
+  class ThemeUtil {
+
+    themeDataSource = {
+      // 色调配置列表
+      [CustomeTheme.themeName]: CustomeTheme.theme,
+    }
+
+    // 初始化色调
+    // 设置默认的大屏色调
+    init() {
+      this.initCurrentThemeData(WonderlandTheme.themeName);
+    }
+
+  }
+
+```
+
+

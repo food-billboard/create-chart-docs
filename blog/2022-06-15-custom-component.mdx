@@ -1,0 +1,169 @@
+---
+slug: 自定义组件开发
+title: 自定义组件
+authors: [Daniel]
+position: 2
+---
+
+本地二次开发自定义定制化**组件**。  
+
+改动位置包括：
+  - 组件类型定义  
+  - 组件列表定义  
+  - 组件引入添加  
+  - 组件开发文件夹  
+
+
+## 组件类型定义  
+
+目录：`/src/component.d.ts`  
+
+```ts 
+
+  declare namespace ComponentData {
+    export type TComponentSelfType = "CUSTOM_COMPONENT_TYPE" // 自定义组件的类型
+  }
+
+```
+
+## 组件列表定义  
+
+目录：`/src/utils/constants/components.tsx`  
+
+```ts 
+
+  type COMPONENT_TYPE_LIST = {
+    type: string  // 组件的类型
+    icon: string  // 组件的显示图标
+    title: string // 组件的名称
+  }
+
+```
+
+## 组件引入添加  
+
+目录：`/src/components/ChartComponents/index.ts`  
+
+```ts
+  import CustomComponent from '/path/to/component'
+
+  COMPONENT_MAP.set(CustomComponent.label, CustomComponent)
+
+```
+
+## 组件开发文件夹  
+
+目录：`/src/components/ChartComponents/CustomComponent`   
+`CustomComponent`为自定义的文件夹名称  
+
+### 类型定义文件  
+`/src/components/ChartComponents/CustomComponent/type.ts`   
+组件特殊化配置的类型文件。  
+
+### 组件配置文件  
+`/src/components/ChartComponents/CustomComponent/config`  
+配置文件的文件夹，包含组件的所有配置。    
+- 只需要包含组件的特殊化配置。  
+
+`props`为：  
+```ts
+  export type IProps<T extends object = {}> = {
+    value: TComponentData<T>;
+    onChange: (value: SuperPartial<TComponentData<T>>) => void;
+  };
+```
+
+格式为：
+```tsx
+  import { Component } from 'react';
+  import { Tabs } from 'antd';
+  import ComponentOptionConfig, {
+    Tab,
+  } from '@/components/ChartComponents/Common/ComponentOptionConfig';
+  import ConfigList from '@/components/ChartComponents/Common/Structure/ConfigList';
+  import { TBarBasicConfig } from '../type';
+
+  const { TabPane } = Tabs;
+
+  const TemplateComponent = (props: IProps) => {
+
+    const { value, onChange } = props 
+
+    return (
+      <ComponentOptionConfig>
+        <TabPane key={'1'} tab={<Tab>配置类型1</Tab>}>
+          <ConfigList level={1}>
+            配置内容
+          </ConfigList>
+        </TabPane>
+      </ComponentOptionConfig>
+    )
+
+  }
+
+```
+
+### 默认配置文件  
+`/src/components/ChartComponents/CustomComponent/defaultConfig.ts`   
+组件的默认样式属性配置。  
+- 通过设置默认配置可以关闭相关不需要开启的通用功能。  
+```ts
+  export default {
+    interactive: {
+      base: [], // 没有交互事件
+    },
+    data: {
+      disabled: true // 没有数据获取配置
+    }
+  }
+```
+
+### 渲染组件文件   
+`/src/components/ChartComponents/CustomComponent/component`  
+实际渲染在画布中的样式。  
+```ts 
+  import {
+    useComponent, // 提供了组件的实用方法的hook
+    useChartComponentResize, // 屏幕发生变化的hook
+    useChartValueMapField, // 字段映射的hook
+    useComponentResize, // 组件大小发生变化的hook 
+    useAnimationChange, // echarts的animation发生变化的hook
+    useCondition, // 组件条件处理的hook
+    useChartComponentTooltip, // echart的tooltip轮播hook
+    useChartPerConfig, // echart的config预处理hook 
+  } from '@/components/ChartComponents/Common/Component/hook';
+
+  import FetchFragment, {
+    TFetchFragmentRef,
+  } from '@/components/ChartComponents/Common/FetchFragment'; // 数据交互的wrapper 
+
+  export type IProps<T> = {
+    className?: string;
+    style?: CSSProperties;
+    value: ComponentData.TComponentData<T>;
+    global: ComponentProps['global'];
+  }
+```
+
+:::tip
+
+关于以上的细节请自行查看对应的已内置的组件的代码。  
+
+:::
+
+### 导出文件  
+`/src/components/ChartComponents/CustomComponent/index.ts`  
+``` ts
+  import defaultConfig from './defaultConfig';
+  import Component from './component';
+  import Config from './config';
+
+  // 需要导出以下几个属性
+  export default {
+    defaultConfig,
+    configComponent: Config,
+    render: Component,
+    type: Component.id,
+  };
+
+```
