@@ -80,13 +80,7 @@ const config = {
           {
             label: '版本', 
             position: 'right',
-            items: [
-              {
-                label: '1.5',
-                to: '/version/1.5',
-                docId: 'version_1.5'
-              }
-            ],
+            to: '/version'
           },
           {
             href: 'https://github.com/food-billboard/create-chart',
@@ -124,7 +118,7 @@ const config = {
             title: '更多',
             items: [
               {
-                label: '博客',
+                label: 'Blog',
                 href: 'https://food-billboard.github.io/',
               },
               {
