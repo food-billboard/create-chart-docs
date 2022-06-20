@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import clsx from 'clsx';
-import { gsap } from 'gsap'
+import { gsap, TimelineLite } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { TextPlugin } from 'gsap/TextPlugin'
 import Layout from '@theme/Layout';
@@ -150,7 +150,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
 // }
 
-const ScrollImageGalay = () => {
+const ScrollImageGallery = () => {
 
   const imageList = useMemo(() => {
     return [
@@ -180,7 +180,6 @@ const ScrollImageGalay = () => {
       column = -1,
       mouse = { x: 0, y: 0 },
       delayedPlay;
-    const photoBox = queryDom('.photoBox')
 
     for (var i = 0; i < 12; i++) {
 
@@ -236,6 +235,8 @@ const ScrollImageGalay = () => {
         .set('.mainBoxes', { left: '75%', xPercent: -50, width: 1200, rotationX: 14, rotationY: -15, rotationZ: 10 })
         .set('.mainClose', { autoAlpha: 0, width: 60, height: 60, left: -30, top: -31, pointerEvents: 'none' })
         .fromTo('.mainContainer', { autoAlpha: 0 }, { duration: 0.6, ease: 'power2.inOut', autoAlpha: 1 }, 0.2)
+
+      const photoBox = queryDom('.photoBox')
 
       photoBox.onmouseenter = function (e) {
         if (currentImg) return;
@@ -328,16 +329,51 @@ const ScrollImageGalay = () => {
 
 const ScrollAnimationHome = () => {
 
+  const title = useMemo(() => {
+    return '自己做的数据可视化大屏'.split('').map(item => {
+      return (
+        <p>{item}</p>
+      )
+    })
+  }, [])
+
+  useEffect(() => {
+    const letters = document.querySelector('.home-page-main-title h2 p')
+    gsap.timeline() 
+    .from(letters, {
+      opacity:0, 
+      scale:0, 
+      rotation:-180,
+      stagger: 0.3 
+    }, 0.5)
+    .to(letters, {
+      stagger: 0.7,
+      scale: 0.8 
+    }, 0.3)
+
+    gsap.from('home-page-main-image', {
+      scale: 0,
+      rotate: 360,
+    })
+
+  }, [])  
+
   return (
     <section
       className={styles['home-page-main']}
     >
-      <ScrollImageGalay />
-      <h2>
-        自己做的数据可视化大屏
-      </h2>
-      <div>
-        <img className={styles['home-page-main-image']} src={require('../../static/img/home/final-chart.png').default} />
+      <ScrollImageGallery />
+      <div
+        className={clsx(styles['home-page-main-title'], 'home-page-main-title')}
+      >
+        <h2>
+          {
+            title
+          }
+        </h2>
+        <div>
+          <img className={clsx(styles['home-page-main-image'], 'home-page-main-image')} src={require('../../static/img/home/final-chart.png').default} />
+        </div>
       </div>
     </section>
   )
