@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { debounce, wrap } from 'lodash'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { TextPlugin } from 'gsap/TextPlugin'
@@ -434,94 +435,75 @@ const ScrollAnimationContainer = () => {
 
 const ScrollAnimationChart = () => {
 
-  const initial = async () => {
+  const initial = () => {
 
-    const timeline = gsap.timeline() 
+    animation()
 
-    timeline
-    // 画布生成动画    
-    .from('.home-page-section-chart-animation-panel div', {
-      width: (index) => {
-        if(index % 2 === 0) return '0%'
-        return '20px'
-      },
-      height: (index) => {
-        if(index % 2 === 0) return '20px'
-        return '0%'
-      },
-      scale: 0,
-      duration: 2,
-      opacity: 0,
-      scrollTrigger: {
-        trigger: '.home-page-section',
-        // start: 'bottom bottom',
-        toggleActions: "play none none reverse",
-      }
-    })
-    // 图表成型动画
-    .from('.home-page-section path', {
-      x: () => {
-        return Math.floor(Math.random() * 50 + 50)
-      },
-      y: () => {
-        return Math.floor(Math.random() * 50 + 50)
-      },
-      scale: 0,
-      rotate: () => {
-        return Math.floor(Math.random() * 360) * (Math.random() > 0.5 ? 1 : -1)
-      },
-      duration: () => {
-        return Math.random() * 3 + 1
-      },
-      opacity: 0,
-      scrollTrigger: {
-        trigger: '.home-page-section',
-        // start: 'bottom bottom',
-        toggleActions: "play none none reverse",
-      }
-    })
-
-    return 
-
-
-
-    // const pathList = gsap.utils.toArray('.home-page-section path');
-    // const borderList = gsap.utils.toArray('.home-page-section-chart-animation-panel div');
-    // const pathCounter = pathList.length 
-    // const borderCounter = borderList.length
-
-
-
-    // console.log(222222222)
-    //   const positionList = [[0, 0]] 
-    //   let index = 0 
-    //   return new Promise(resolve => {
-    //     pathList.forEach((path: any, index) => {
-    //       const [x, y] = positionList[index] || [] 
-    //       gsap.to(path, {
-    //         x,
-    //         y,
-    //         duration: 1,
-    //         onComplete: () => {
-    //           index ++ 
-    //           if(index === pathCounter) {
-    //             resolve('')
-    //           }
-    //         },
-    //         scrollTrigger: {
-    //           trigger: '.home-page-section',
-    //           // start: 'bottom bottom',
-    //           toggleActions: "play none none reverse",
-    //         }
-    //       })
-    //     });
-    //   })
 
   }
 
+  const animation = () => {
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.home-page-section',
+        // start: 'bottom bottom',
+        toggleActions: "play none none reverse",
+      }
+    })
+
+    timeline
+      // 画布生成动画    
+      .from('.home-page-section-chart-animation-panel', {
+        scale: 0,
+        duration: 2,
+        opacity: 0,
+        transformOrigin: 'center'
+      })
+      // 图表成型动画
+      .from("div[class^='home-page-section-chart-animation-list'] path", {
+        x: () => {
+          return Math.floor(Math.random() * 50 + 50)
+        },
+        y: () => {
+          return Math.floor(Math.random() * 50 + 50)
+        },
+        scale: 0,
+        rotate: () => {
+          return Math.floor(Math.random() * 360) * (Math.random() > 0.5 ? 1 : -1)
+        },
+        duration: () => {
+          return Math.random() * 2 + 1
+        },
+        opacity: 0,
+      })
+      // 图表放置画布动画
+      .to("div[class^='home-page-section-chart-animation-list'] svg", {
+        delay: 1,
+        x: '40vh',
+        y: 0,
+        opacity: 0
+      })
+      // 展示画布内图表
+      .to("div[class^='home-page-section-chart-animation-panel-wrapper'] svg", {
+        opacity: 1
+      })
+      // 去掉左边列表
+      .to("div[class^='home-page-section-chart-animation-list']", {
+        display: 'none'
+      })
+  }
+
+  const onResize = debounce(initial)
+
   useEffect(() => {
 
-    initial()
+    onResize()
+
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
 
   }, [])
 
@@ -542,24 +524,29 @@ const ScrollAnimationChart = () => {
         className={clsx(styles['home-page-section-chart-animation-panel'], 'home-page-section-chart-animation-panel')}
       >
         <div
-          className='home-page-section-chart-animation-panel-border-top'
+          className={styles['home-page-section-chart-animation-panel-wrapper']}
         >
-
-        </div>
-        <div
-          className='home-page-section-chart-animation-panel-border-right'
-        >
-
-        </div>
-        <div
-          className='home-page-section-chart-animation-panel-border-bottom'
-        >
-
-        </div>
-        <div
-          className='home-page-section-chart-animation-panel-border-left'
-        >
-
+          <div
+            className='home-page-section-chart-animation-panel-border-top'
+          />
+          <div
+            className='home-page-section-chart-animation-panel-border-right'
+          />
+          <div
+            className='home-page-section-chart-animation-panel-border-bottom'
+          />
+          <div
+            className='home-page-section-chart-animation-panel-border-left'
+          />
+          <div
+            className={styles['home-page-section-chart-animation-panel-chart-wrapper']}
+          >
+            <BarChart />
+            <LineChart />
+            <PieChart />
+            <RadarChart />
+            <ScatterChart />
+          </div>
         </div>
       </div>
     </section>
