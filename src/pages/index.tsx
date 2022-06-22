@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { TextPlugin } from 'gsap/TextPlugin'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -90,7 +91,7 @@ const ScrollImageGallery = () => {
       return (
         <div
           style={{
-            backgroundImage: 'url(/img/home/gallery/' + (index + 1) + '.png)',
+            backgroundImage: `url(${require(`@site/static/img/home/gallery/${(index + 1)}.png`).default})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             overflow: 'hidden',
