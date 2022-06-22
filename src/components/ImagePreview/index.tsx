@@ -10,7 +10,7 @@ const ImagePreview = (props: {
   align?: 'center' | 'left' | 'right'
 }) => {
 
-  const { width='480', align='center', ...nextProps } = props 
+  const { width='480', align='center', src, ...nextProps } = props 
 
   return (
     <div
@@ -20,6 +20,7 @@ const ImagePreview = (props: {
     >
       <Zoom>
         <img
+          src={require(`@site/static${src}`).default}
           {...nextProps}
           width={width}
         />
