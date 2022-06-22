@@ -9,7 +9,7 @@ const config = {
   title: '可视化大屏文档',
   tagline: '数据可视化的操作和开发文档',
   url: 'https://food-billboard.github.io/',
-  baseUrl: '/',
+  baseUrl: '/create-chart-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
