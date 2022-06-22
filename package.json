@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start --port 5000",
     "build": "docusaurus build",
+    "build-self": "docusaurus build --config ./docusaurus.config.self.js --out-dir build-self",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
