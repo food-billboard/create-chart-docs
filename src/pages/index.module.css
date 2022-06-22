@@ -42,16 +42,14 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  background-color: black;
   overflow: hidden;
 }
 .home-page-main-path {
   width: 100%;
   height: 200px;
-}
-.home-page-main-path span {
-  color: white;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .home-page-main-title {
   position: relative;
@@ -69,7 +67,6 @@
   margin-top: 36px;
   transition: text-shadow 1s;
   cursor: pointer;
-  color: white;
 }
 .home-page-main h2:hover {
   text-shadow:     0 1px 0 hsl(174,5%,80%),
@@ -96,7 +93,6 @@
   position: absolute;
   bottom: 20px;
   left: 0;
-  color: white;
 }
 .mainContainer,
 .mainContainer div {
@@ -131,17 +127,11 @@
   font-weight: bold;
   padding: 0 24px;
 }
-.home-page-section-background-left p,
-.home-page-section-background-right p {
-  color: white;
-} 
-
 
 .home-page-section-chart-animation {
   width: 100%;
   height: 100vh;
   display: flex;
-  background-color: white;
   padding: 36px;
 }
 .home-page-section-chart-animation-list {
@@ -166,8 +156,10 @@
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  top: 20px;
   background-color: transparent !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 20px;
 }
 .home-page-section-chart-animation-panel-wrapper {
   width: 100%;
@@ -180,6 +172,8 @@
 }
 .home-page-section-chart-animation-panel-wrapper svg {
   opacity: 0;
+  width: 33%;
+  max-height: 50%;
 }
 .home-page-section-chart-animation-panel-wrapper div {
   background-color: black;
@@ -208,4 +202,20 @@
 .home-page-section-chart-animation-panel-wrapper div:nth-of-type(4) {
   left: 0;
   top: 0;
+}
+
+[data-theme='dark'] .home-page-main {
+  background-color: black;
+}
+[data-theme='dark'] .home-page-main h2 {
+  color: white;
+}
+[data-theme='dark'] .home-page-main-footer {
+  color: white;
+}
+[data-theme='dark'] .home-page-section-chart-animation {
+  background-color: rgba(255, 255, 255, 0.774);
+}
+[data-theme='dark'] .home-page-section-chart-animation-panel-wrapper div {
+  background-color: white;
 }
