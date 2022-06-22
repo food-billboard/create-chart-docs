@@ -209,26 +209,10 @@ const ScrollImageGallery = () => {
 
 const ScrollPathAnimation = () => {
   
-  const [ width, setWidth ] = useState<number>(document.body.clientWidth)
+  const [ width, setWidth ] = useState<number>(0)
 
   const onResize = () => {
     setWidth(document.body.clientWidth)
-
-     
-    gsap.to(".rect", {
-      duration: 10,
-      repeat: -1,
-      repeatDelay: 1,
-      yoyo: true,
-      ease: "power1.inOut",
-      motionPath: {
-        path: "#path",
-        align: "#path",
-        autoRotate: true,
-        alignOrigin: [0.5, 0.5]
-      }
-    });
-
   }
 
   const dPath = useMemo(() => {
@@ -254,6 +238,22 @@ const ScrollPathAnimation = () => {
     }
 
   }, [])
+
+  useEffect(() => {
+    gsap.to(".rect", {
+      duration: 10,
+      repeat: -1,
+      repeatDelay: 1,
+      yoyo: true,
+      ease: "power1.inOut",
+      motionPath: {
+        path: "#path",
+        align: "#path",
+        autoRotate: true,
+        alignOrigin: [0.5, 0.5]
+      }
+    });
+  }, [dPath])
 
   return (
     <div

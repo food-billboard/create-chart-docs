@@ -8,12 +8,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: '可视化大屏文档',
   tagline: '数据可视化的操作和开发文档',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://food-billboard.github.io/create-chart-docs/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  deploymentBranch: 'master',
+  deploymentBranch: 'gh-pages',
 
   customFields: {
 
