@@ -42,7 +42,7 @@ import ImagePreview from "@site/src/components/ImagePreview";
   
   组件**数据**的来源类型。  
 
-  当前数据来源包含：[静态数据](#static)和[API](#api)
+  当前数据来源包含：[静态数据](#static)和[API](#api)以及[MOCK](#mock)(2022-07-08)  
 
 ### 静态数据 {#static}
 
@@ -110,6 +110,15 @@ import ImagePreview from "@site/src/components/ImagePreview";
   网络请求不通过浏览器发起，而是通过**服务端**发起请求并返回数据。  
 
   实际制作大屏时，往往请求的`url`地址和当前大屏地址**域名**并不相同，如此发起请求会出现**跨域**的问题。  
+
+### MOCK {#mock}
+
+来自后端返回的固定的`mock`数据，数据并非真实，而是来自于通过配置以及配合[mockjs](http://mockjs.com/)生成的假数据。  
+通常用于做简单演示用，这样可以省去编写静态数据的繁琐步骤，加快大屏的成型。  
+
+<ImagePreview alt="mock介绍" src="/img/docs/设计器/画布/配置/组件配置/数据/mock.png" />   
+
+具体细节请查看示例。[传送门](/docs/实例/example-4)  
 
 ### 过滤器  
 
