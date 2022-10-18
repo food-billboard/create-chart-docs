@@ -9,7 +9,13 @@ import ImagePreview from "@site/src/components/ImagePreview";
   组件内置交互事件，当*组件*的**状态**或**数据**发生变化，或是触发了指定**事件**时，触发交互。  
   其他组件可以使用关联其他组件的交互。  
 
-  <ImagePreview alt="交互介绍" src="/img/docs/设计器/画布/配置/组件配置/交互/interactive-intro.png" /> 
+  目前存在两种交互：  
+  - 基础交互  
+  - 跳转交互（2022-10-10）  
+
+  <ImagePreview alt="交互介绍" src="/img/docs/设计器/画布/配置/组件配置/交互/interactive-intro.jpg" /> 
+
+## 基础交互  
 
   比如：
     点击**柱形图**柱条触发其事件。  
@@ -29,3 +35,9 @@ import ImagePreview from "@site/src/components/ImagePreview";
   类似于*数据的字段映射*，交互的字段同样可以进行映射，设置为不同的名称。  
 
   <ImagePreview alt="交互映射" src="/img/docs/设计器/画布/配置/组件配置/交互/interactive-map.png" /> 
+
+## 跳转交互  
+
+  跳转交互即点击图表即可将图表数据携带在自定义的`url`参数上进行链接跳转。  
+
+  具体可查看实例[传送门](/docs/实例/example-6)。       
