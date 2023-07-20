@@ -9,6 +9,7 @@
     "build-self": "docusaurus build --config ./docusaurus.config.self.js --out-dir build-self",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
+    "build-self-deploy": "npm run build-self && npm run deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
